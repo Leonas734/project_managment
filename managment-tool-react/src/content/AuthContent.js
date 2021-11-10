@@ -12,7 +12,11 @@ export const authReducer = (state, action) => {
     };
   }
   if (action.type === "LOGOUT") {
-    return;
+    return {
+      authToken: null,
+      userId: null,
+      userName: null,
+    };
   }
   return { ...state };
 };

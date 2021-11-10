@@ -14,9 +14,19 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
+          <Route
+            exact
+            path="/"
+            element={userId ? <Home /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/login"
+            element={userId ? <Navigate to="/" /> : <Login />}
+          />
+          <Route
+            path="/signup"
+            element={userId ? <Navigate to="/" /> : <Signup />}
+          />
           <Route path="/*" element={<Navigate to="/" />} />
         </Routes>
       </BrowserRouter>
