@@ -6,12 +6,14 @@ import { useAuthContext } from "./hooks/useAuthContext";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import Signup from "./pages/signup/Signup";
+import Nav from "./components/nav/Nav";
 
 function App() {
   const { authToken, userId, userName } = useAuthContext();
 
   return (
     <div className="App">
+      <Nav userName={userName} />
       <BrowserRouter>
         <Routes>
           <Route
