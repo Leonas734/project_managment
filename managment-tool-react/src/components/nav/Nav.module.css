@@ -1,0 +1,53 @@
+.nav-bar {
+  position: relative;
+  height: 3rem;
+  background-color: lightgray;
+}
+
+.nav-title {
+  position: absolute;
+  left: 2%;
+  margin: 0;
+  top: 20%;
+}
+
+.nav-user-logo {
+  position: absolute;
+  right: 0;
+  top: 30%;
+  right: 2%;
+}
+
+.nav-user-menu {
+  position: absolute;
+  height: 300px;
+  width: 300px;
+  background-color: lightgray;
+  top: 100%;
+  right: 0;
+}
+
+.nav-user-menu p {
+  font-size: 1.3rem;
+}
+
+.nav-user-menu span {
+  font-weight: bold;
+}
+
+.nav-user-menu ul {
+  padding: 0;
+}
+
+.nav-user-menu li {
+  list-style-type: none;
+}
+
+.logout-button {
+  color: red;
+  font-size: 2rem;
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+}

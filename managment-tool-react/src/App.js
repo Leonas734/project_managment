@@ -13,7 +13,7 @@ function App() {
 
   return (
     <div className="App">
-      <Nav userName={userName} />
+      {userName && <Nav userName={userName} />}
       <BrowserRouter>
         <Routes>
           <Route
