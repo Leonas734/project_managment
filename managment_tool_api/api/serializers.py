@@ -21,7 +21,7 @@ class UserSerializer(serializers.ModelSerializer):
 class ProjectSerializerLight(serializers.ModelSerializer):
     class Meta:
         model = Project
-        fields = ['id', 'title', 'filter_tags','description', 'creator', 'users']
+        fields = ['id', 'title', 'filter_tags','description', 'creator_details', 'first_three_users']
 
 class TaskCommentSerializer(serializers.ModelSerializer):
     class Meta:
@@ -31,12 +31,16 @@ class TaskCommentSerializer(serializers.ModelSerializer):
 class ProjectTaskSerializer(serializers.ModelSerializer):
     all_comments = TaskCommentSerializer(many=True, required=False)
     class Meta:
+        extra_kwargs = {
+        'creator': {'write_only': True, 'required': True},
+        'assigned_users': {'write_only': True, 'required': True},
+        }
         model = ProjectTask
-        fields = ['id', 'project', 'title', 'description', 'creator', 'filter_tag', 'assigned_users', 'total_comments', 'all_comments']
+        fields = ['id', 'project', 'title', 'description', 'filter_tag', 'creator', 'creator_details', 'assigned_users', 'task_users_details', 'total_comments', 'all_comments']
 
     # Overwriting create function to add filter_tag to Project
     def create(self, validated_data):
-        # Have to create a new Project Task object because
+        # Have to create a new Project Task object because,
         # ManyToMany relationship must be set()
         user = validated_data['creator']
         tag = validated_data['filter_tag']
@@ -51,7 +55,7 @@ class ProjectTaskSerializer(serializers.ModelSerializer):
         new_task.assigned_users.set([user])
         new_task.save()
 
-        # Append new filter tag
+        # Append new filter tag to project filter tags array
         project = new_task.project
         project_tags = new_task.project.filter_tags
         if tag not in project_tags:
@@ -60,11 +64,13 @@ class ProjectTaskSerializer(serializers.ModelSerializer):
 
         return new_task
         
-
 class ProjectSerializer(serializers.ModelSerializer):
     all_tasks = ProjectTaskSerializer(many=True, required=False)
 
     class Meta:
+        extra_kwargs = {
+        'creator': {'write_only': True, 'required': True},
+        'users': {'write_only': True, 'required': True},
+        }
         model = Project
-        fields = ['id', 'title', 'filter_tags', 'description', 'creator', 'users', 'created', 'all_tasks']
-
+        fields = ['id', 'title', 'filter_tags', 'description', 'creator', 'users' ,'creator_details', 'project_users', 'created', 'all_tasks']

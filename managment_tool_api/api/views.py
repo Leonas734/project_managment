@@ -73,7 +73,6 @@ class ProjectViewSet(viewsets.ModelViewSet):
         return Response({'detail': "Method not allowed."}, status=status.HTTP_406_NOT_ACCEPTABLE)
 
 class ProjectTaskViewSet(viewsets.ModelViewSet):
-        queryset = ProjectTask.objects.all()
         serializer_class = ProjectTaskSerializer
         permission_classes = (IsAuthenticated, )
         authentication_classes = (TokenAuthentication,  )
@@ -85,14 +84,13 @@ class ProjectTaskViewSet(viewsets.ModelViewSet):
             return False
 
         def create(self, request):
-            project_id = request.data['project']
-            project = get_object_or_404(Project, id=project_id)
-            # User not authorized to create tasks on current project
-            if not self.user_has_project_access(request.user, project):
-                return Response({'detail': "Not found."}, status=status.HTTP_400_BAD_REQUEST)
-
             serializer = ProjectTaskSerializer(data=request.data)
             if serializer.is_valid():
+                project_id = request.data['project']
+                project = get_object_or_404(Project, id=project_id)
+                # User not authorized to create tasks on current project
+                if not self.user_has_project_access(request.user, project):
+                    return Response({'detail': "Not found."}, status=status.HTTP_400_BAD_REQUEST)
                 serializer.save()
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
             else:

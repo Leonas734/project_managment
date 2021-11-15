@@ -5,6 +5,11 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
     img = models.ImageField(default=None, blank=True)
 
+    # Returns users Id, username and image URL in a dict object.
+    def user_details(self):
+        return {"id": self.id, "username": self.username, "img": self.img.url}
+
+
 class Project(models.Model):
     filter_tags = models.JSONField(blank=True, default=list)
     title = models.CharField(max_length=100)
@@ -19,6 +24,22 @@ class Project(models.Model):
     def all_tasks(self):
         all_tasks = self.project_tasks.filter(project=self)
         return all_tasks
+
+    def creator_details(self):
+        return self.creator.user_details()
+
+    def first_three_users(self):
+        first_three_users = []
+        for usr in self.users.all()[0:3]:
+            first_three_users.append(usr.user_details())
+        total_users = len(self.users.all())
+        return {"total_users": total_users, "first_three_users": first_three_users}
+
+    def project_users(self):
+        all_project_users = []
+        for usr in self.users.all():
+            all_project_users.append(usr.user_details())
+        return all_project_users
 
 class ProjectTask(models.Model):    
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="project_tasks")
@@ -35,7 +56,16 @@ class ProjectTask(models.Model):
     def all_comments(self):
         comments = self.project_task_comment.filter(task=self)
         return comments
-    
+
+    def creator_details(self):
+        return self.creator.user_details()
+
+    def task_users_details(self):
+        all_users = []
+        for usr in self.assigned_users.all():
+            all_users.append(usr.user_details())
+        return all_users
+
 class TaskComment(models.Model):
     text = models.TextField(max_length=500)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
