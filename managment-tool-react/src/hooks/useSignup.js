@@ -1,43 +1,41 @@
 import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
 import { useCookies } from "react-cookie";
+import { useLogin } from "./useLogin";
 
-export const useLogin = () => {
+export const useSignup = () => {
   const { dispatch } = useAuthContext();
   const [error, setError] = useState(null);
   const [isPending, setIsPending] = useState(false);
-  const [userCookies, setUserCookies] = useCookies(["userDetailsCookie"]);
+  const [accountCreated, setAccountCreated] = useState(false);
 
-  const login = async (username, password) => {
+  const signup = async (username, email, password, repeatPassword) => {
     setError(null);
     setIsPending(true);
-
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/auth/", {
+      if (password !== repeatPassword) {
+        throw new Error("Passwords do not match");
+      }
+
+      const res = await fetch("http://127.0.0.1:8000/api/users/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ username, email, password }),
       });
+
       const data = await res.json();
       if (!res.ok) {
         const errorMessage = Object.values(data)[0];
         throw new Error(errorMessage);
       }
-      const { token: authToken, username: userName, id: userId } = data;
-      dispatch({ type: "LOGIN", payload: { authToken, userName, userId } });
-      setUserCookies("userDetailsCookie", {
-        authToken,
-        userName,
-        userId,
-      });
+      setAccountCreated(true);
     } catch (err) {
       setError(`Error: ${err.message}`);
     }
-
     setIsPending(false);
   };
 
-  return { login, error, isPending };
+  return { signup, error, isPending, accountCreated };
 };

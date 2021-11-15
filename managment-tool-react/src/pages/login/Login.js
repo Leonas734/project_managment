@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useLogin } from "../../hooks/useLogin";
 
+import styles from "./Login.module.css";
+
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -13,7 +15,8 @@ export default function Login() {
 
   return (
     <>
-      <form onSubmit={loginHandler}>
+      <h1>Login</h1>
+      <form className={styles["login-form"]} onSubmit={loginHandler}>
         <label>
           <span>Username</span>
           <input
@@ -34,8 +37,9 @@ export default function Login() {
         </label>
         <button>Login</button>
       </form>
-      {error && <p>{error}</p>}
+      {error && <p className={styles.error}>{error}</p>}
       {isPending && <p>Loading...</p>}
+      <a href="/signup">No account? Sign up here!</a>
     </>
   );
 }
