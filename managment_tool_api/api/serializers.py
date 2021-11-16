@@ -36,7 +36,7 @@ class ProjectTaskSerializer(serializers.ModelSerializer):
         'assigned_users': {'write_only': True, 'required': True},
         }
         model = ProjectTask
-        fields = ['id', 'project', 'title', 'description', 'filter_tag', 'creator', 'creator_details', 'assigned_users', 'task_users_details', 'total_comments', 'all_comments']
+        fields = ['id', 'project', 'title', 'description', 'filter_tag', 'due_date', 'creator', 'creator_details', 'assigned_users', 'task_users_details', 'total_comments', 'all_comments']
 
     # Overwriting create function to add filter_tag to Project
     def create(self, validated_data):

@@ -4,7 +4,7 @@ export default function ProjectTask({ task }) {
   return (
     <div className={styles.task}>
       <h3>{task.title}</h3>
-      <p>Due date: </p>
+      <p>Due date: {task.due_date} </p>
       {task.task_users_details.map((user) => {
         return (
           <img

@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import date
 
 from django.contrib.auth.models import AbstractUser
 
@@ -41,6 +42,7 @@ class ProjectTask(models.Model):
     creator = models.ForeignKey(User, related_name='task_creator', on_delete=models.CASCADE)
     filter_tag = models.CharField(max_length=10, blank=False)
     assigned_users = models.ManyToManyField(User, related_name='assigned_tasks')
+    due_date = models.DateField(default=date.today)
 
     def total_comments(self):
         total = self.project_task_comment.all()
