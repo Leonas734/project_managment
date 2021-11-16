@@ -1,10 +1,7 @@
 import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
-import { useCookies } from "react-cookie";
-import { useLogin } from "./useLogin";
 
 export const useSignup = () => {
-  const { dispatch } = useAuthContext();
   const [error, setError] = useState(null);
   const [isPending, setIsPending] = useState(false);
   const [accountCreated, setAccountCreated] = useState(false);

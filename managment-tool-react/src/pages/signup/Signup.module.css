@@ -7,7 +7,7 @@
 .signup-form label {
   display: block;
   margin: 30px auto;
-  width: 100%;
+  width: 90%;
 }
 .signup-form span {
   display: block;
@@ -17,7 +17,7 @@
   padding: 8px 6px;
   font-size: 1em;
   color: #777;
-  width: 100%;
+  width: 90%;
 }
 
 .signup-form button {

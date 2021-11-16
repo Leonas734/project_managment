@@ -23,22 +23,15 @@ export const authReducer = (state, action) => {
 
 export const AuthContextProvider = ({ children }) => {
   const [userCookies, setUserCookies] = useCookies(["userDetailsCookie"]);
+  const { authToken, userId, userName } = userCookies.userDetailsCookie;
 
   const [state, dispatch] = useReducer(authReducer, {
-    authToken: null,
-    userName: null,
-    userId: null,
+    authToken: authToken,
+    userName: userName,
+    userId: userId,
   });
 
-  // Check if users details are stored in a cookie and log them in if they are.
-  useEffect(() => {
-    if (userCookies.userDetailsCookie) {
-      const { authToken, userId, userName } = userCookies.userDetailsCookie;
-
-      dispatch({ type: "LOGIN", payload: { authToken, userId, userName } });
-    } else {
-    }
-  }, [userCookies]);
+  useEffect(() => {}, []);
 
   return (
     <AuthContext.Provider value={{ ...state, dispatch }}>

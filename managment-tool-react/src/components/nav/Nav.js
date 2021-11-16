@@ -36,7 +36,13 @@ export default function Nav({ userName }) {
             Hello <span>{userName}</span>
           </p>
           <ul>
-            <li>Hello!</li>
+            <li>
+              <a href="/account_settings">Account settings</a>
+            </li>
+            <li>---</li>
+            <li>---</li>
+            <li>---</li>
+            <li>---</li>
             <li
               className={styles["logout-button"]}
               onClick={() => {

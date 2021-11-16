@@ -28,7 +28,7 @@
 }
 
 .nav-user-menu p {
-  font-size: 1.3rem;
+  font-size: 1.7rem;
 }
 
 .nav-user-menu span {
@@ -41,13 +41,28 @@
 
 .nav-user-menu li {
   list-style-type: none;
+  font-size: 1.5rem;
+  transition: all 0.5s;
+}
+.nav-user-menu a {
+  text-decoration: none;
+  color: initial;
+}
+
+.nav-user-menu li:hover {
+  transform: scale(1.1);
 }
 
 .logout-button {
   color: red;
-  font-size: 2rem;
   position: absolute;
   bottom: 10%;
   left: 50%;
   transform: translateX(-50%);
+  font-size: 1.8rem !important;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  transform: scale(1) translateX(-50%) !important;
 }

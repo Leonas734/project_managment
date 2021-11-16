@@ -1,0 +1,10 @@
+.account-settings p {
+  display: inline-block;
+  padding: 2rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.account-settings a {
+  display: block;
+}
