@@ -40,7 +40,13 @@ export default function Home() {
       {/* CURRENT PROJECT USERS */}
       <div className={styles.users}>
         <h3>Project userss</h3>
-        {allProjects && console.log(allProjects)}
+        {allProjects &&
+          currentProject &&
+          console.log(
+            allProjects.filter((project) => {
+              return project.id === currentProject;
+            })
+          )}
       </div>
 
       {/* CURRENT PROJECT */}
