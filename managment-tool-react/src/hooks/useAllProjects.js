@@ -6,7 +6,7 @@ export const useAllProjects = () => {
 
   const [error, setError] = useState(null);
   const [isPending, setIsPending] = useState(false);
-  const [allProjects, setAllProjects] = useState([]);
+  const [allProjects, setAllProjects] = useState(null);
 
   const getProjects = useCallback(async () => {
     setError(null);

@@ -38,7 +38,10 @@ export default function Home() {
       </div>
 
       {/* CURRENT PROJECT USERS */}
-      <div className={styles.users}>{console.log(allProjects)}</div>
+      <div className={styles.users}>
+        <h3>Project userss</h3>
+        {allProjects && console.log(allProjects)}
+      </div>
 
       {/* CURRENT PROJECT */}
       <div className={styles.project}>
