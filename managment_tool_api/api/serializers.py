@@ -21,7 +21,7 @@ class UserSerializer(serializers.ModelSerializer):
 class ProjectSerializerLight(serializers.ModelSerializer):
     class Meta:
         model = Project
-        fields = ['id', 'title', 'filter_tags','description', 'creator_details', 'first_three_users']
+        fields = ['id', 'title']
 
 class TaskCommentSerializer(serializers.ModelSerializer):
     class Meta:

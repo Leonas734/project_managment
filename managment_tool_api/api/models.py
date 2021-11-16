@@ -28,13 +28,6 @@ class Project(models.Model):
     def creator_details(self):
         return self.creator.user_details()
 
-    def first_three_users(self):
-        first_three_users = []
-        for usr in self.users.all()[0:3]:
-            first_three_users.append(usr.user_details())
-        total_users = len(self.users.all())
-        return {"total_users": total_users, "first_three_users": first_three_users}
-
     def project_users(self):
         all_project_users = []
         for usr in self.users.all():
