@@ -8,7 +8,7 @@ export default function CurrentProject({ projectId }) {
     if (projectId) {
       getProject(projectId);
     }
-  }, [projectId]);
+  }, [projectId, getProject]);
 
   return (
     <>
@@ -19,6 +19,7 @@ export default function CurrentProject({ projectId }) {
           <p>Description: {project.description}</p>
         </div>
       )}
+      {error && <p>{error}</p>}
     </>
   );
 }

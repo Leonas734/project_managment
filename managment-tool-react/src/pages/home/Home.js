@@ -1,6 +1,5 @@
 import Project from "./Project";
 import styles from "./Home.module.css";
-import { useAuthContext } from "../../hooks/useAuthContext";
 import { useAllProjects } from "../../hooks/useAllProjects.js";
 import CurrentProject from "./CurrentProject";
 
@@ -8,13 +7,12 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 export default function Home() {
-  const { authToken, userId, userName } = useAuthContext();
   const [currentProject, setCurrentProject] = useState(null);
   const { getProjects, error, isPending, allProjects } = useAllProjects();
 
   useEffect(() => {
     getProjects();
-  }, []);
+  }, [getProjects]);
 
   return (
     <div className={styles.home}>
@@ -22,20 +20,23 @@ export default function Home() {
 
       {/* SIDEBAR */}
       <div className={styles.projects}>
-        <a href="#">New project</a>
-        {allProjects.map((project, index) => {
-          if (index === 0 && !currentProject) {
-            setCurrentProject(project.id);
-          }
-          return (
-            <Project
-              key={project.id}
-              project={project}
-              projectChange={setCurrentProject}
-              active={project.id === currentProject ? true : false}
-            />
-          );
-        })}
+        <p>New project</p>
+        {isPending && <p>Loading...</p>}
+        {allProjects &&
+          allProjects.map((project, index) => {
+            if (index === 0 && !currentProject) {
+              setCurrentProject(project.id);
+            }
+            return (
+              <Project
+                key={project.id}
+                project={project}
+                projectChange={setCurrentProject}
+                active={project.id === currentProject ? true : false}
+              />
+            );
+          })}
+        {error && <p>{error}</p>}
       </div>
 
       <div className={styles.filters}>EMPTY</div>

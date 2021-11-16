@@ -22,7 +22,7 @@ export const authReducer = (state, action) => {
 };
 
 export const AuthContextProvider = ({ children }) => {
-  const [userCookies, setUserCookies] = useCookies(["userDetailsCookie"]);
+  const [userCookies] = useCookies(["userDetailsCookie"]);
   const { authToken, userId, userName } = userCookies.userDetailsCookie;
 
   const [state, dispatch] = useReducer(authReducer, {

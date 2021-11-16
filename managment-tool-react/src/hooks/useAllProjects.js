@@ -1,15 +1,14 @@
-import { useState } from "react";
-
+import { useCallback, useState } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
 
 export const useAllProjects = () => {
-  const { authToken, userId, userName } = useAuthContext();
+  const { authToken } = useAuthContext();
 
   const [error, setError] = useState(null);
   const [isPending, setIsPending] = useState(false);
   const [allProjects, setAllProjects] = useState([]);
 
-  const getProjects = async () => {
+  const getProjects = useCallback(async () => {
     setError(null);
     setIsPending(true);
 
@@ -33,6 +32,7 @@ export const useAllProjects = () => {
     } catch (err) {
       setError(`Error: ${err.message}`);
     }
-  };
+    setIsPending(false);
+  }, [authToken]);
   return { getProjects, error, isPending, allProjects };
 };

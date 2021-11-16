@@ -6,7 +6,7 @@ export const useLogin = () => {
   const { dispatch } = useAuthContext();
   const [error, setError] = useState(null);
   const [isPending, setIsPending] = useState(false);
-  const [userCookies, setUserCookies] = useCookies(["userDetailsCookie"]);
+  const setUserCookies = useCookies(["userDetailsCookie"])[1];
 
   const login = async (username, password) => {
     setError(null);

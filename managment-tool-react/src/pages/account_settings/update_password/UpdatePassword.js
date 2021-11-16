@@ -54,8 +54,11 @@ export default function UpdatePassword({ changePasswordShowState }) {
         {isPending && <p>Loading...</p>}
         {newPasswordSet && !isPending && <p>Password updated!</p>}
         <a
-          href="#"
-          onClick={(e) => (e.preventDefault(), changePasswordShowState(false))}>
+          href="/account_settings"
+          onClick={(e) => {
+            e.preventDefault();
+            changePasswordShowState(false);
+          }}>
           Go back
         </a>
       </>

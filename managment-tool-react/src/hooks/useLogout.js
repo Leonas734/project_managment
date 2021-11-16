@@ -3,7 +3,7 @@ import { useCookies } from "react-cookie";
 
 export const useLogout = () => {
   const { dispatch } = useAuthContext();
-  const [userCookies, setUserCookies] = useCookies(["userDetailsCookie"]);
+  const setUserCookies = useCookies(["userDetailsCookie"])[1];
 
   const logout = () => {
     setUserCookies("userDetailsCookie", {});

@@ -24,6 +24,7 @@ export default function Nav({ userName }) {
       <img
         className={styles["nav-user-logo"]}
         src={userLogoDark}
+        alt="User logo"
         onMouseEnter={() => {
           setUserMenu(true);
         }}

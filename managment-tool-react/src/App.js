@@ -10,7 +10,7 @@ import AccountSettings from "./pages/account_settings/AccountSettings";
 import Nav from "./components/nav/Nav";
 
 function App() {
-  const { authToken, userId, userName } = useAuthContext();
+  const { userId, userName } = useAuthContext();
 
   return (
     <div className="App">
