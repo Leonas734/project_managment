@@ -22,7 +22,7 @@ export default function AccountSettings() {
       {showPasswordChange && (
         <UpdatePassword changePasswordShowState={setShowPasswordChange} />
       )}
-      <a href="/">Back to Homepage</a>
+      {!showPasswordChange && <a href="/">Back to Homepage</a>}
     </div>
   );
 }
