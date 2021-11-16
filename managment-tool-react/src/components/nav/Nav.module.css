@@ -9,6 +9,10 @@
   left: 2%;
   margin: 0;
   top: 20%;
+  text-decoration: none;
+  color: initial;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 .nav-user-logo {

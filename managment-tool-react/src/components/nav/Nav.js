@@ -18,7 +18,9 @@ export default function Nav({ userName }) {
 
   return (
     <nav className={styles["nav-bar"]}>
-      <h1 className={styles["nav-title"]}>taskRep</h1>
+      <a href="/" className={styles["nav-title"]}>
+        taskRep
+      </a>
       <img
         className={styles["nav-user-logo"]}
         src={userLogoDark}

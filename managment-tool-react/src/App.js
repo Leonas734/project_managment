@@ -37,9 +37,6 @@ function App() {
           <Route path="/*" element={<Navigate to="/" />} />
         </Routes>
       </BrowserRouter>
-      <div>{authToken}</div>
-      <div>{userId}</div>
-      <div>{userName}</div>
     </div>
   );
 }
