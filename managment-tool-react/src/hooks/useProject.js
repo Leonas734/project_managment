@@ -6,7 +6,7 @@ export const useProject = (id) => {
 
   const [error, setError] = useState(null);
   const [isPending, setIsPending] = useState(false);
-  const [project, setProject] = useState([]);
+  const [project, setProject] = useState(null);
 
   const getProject = async (projectId) => {
     setError(null);
@@ -25,7 +25,6 @@ export const useProject = (id) => {
       );
 
       const data = await res.json();
-
       if (!res.ok) {
         const errorMessage = Object.values(data)[0];
         throw new Error(errorMessage);
@@ -35,6 +34,7 @@ export const useProject = (id) => {
     } catch (err) {
       setError(`Error: ${err.message}`);
     }
+    setIsPending(false);
   };
   return { getProject, error, isPending, project };
 };
