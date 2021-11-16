@@ -30,9 +30,7 @@ export const usePasswordUpdate = () => {
           new_password: repeatNewPassword,
         }),
       });
-      console.log(res);
       const data = await res.json();
-      console.log(data);
       if (!res.ok) {
         const errorMessage = Object.values(data)[0];
         throw new Error(errorMessage);

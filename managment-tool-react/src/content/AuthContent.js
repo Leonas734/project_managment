@@ -1,4 +1,4 @@
-import { createContext, useReducer, useEffect } from "react";
+import { createContext, useReducer } from "react";
 import { useCookies } from "react-cookie";
 
 export const AuthContext = createContext();
@@ -30,8 +30,6 @@ export const AuthContextProvider = ({ children }) => {
     userName: userName,
     userId: userId,
   });
-
-  useEffect(() => {}, []);
 
   return (
     <AuthContext.Provider value={{ ...state, dispatch }}>

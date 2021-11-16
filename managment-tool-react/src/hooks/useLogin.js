@@ -25,6 +25,7 @@ export const useLogin = () => {
         const errorMessage = Object.values(data)[0];
         throw new Error(errorMessage);
       }
+      setIsPending(false);
       const { token: authToken, username: userName, id: userId } = data;
       dispatch({ type: "LOGIN", payload: { authToken, userName, userId } });
       setUserCookies("userDetailsCookie", {
@@ -33,10 +34,9 @@ export const useLogin = () => {
         userId,
       });
     } catch (err) {
+      setIsPending(false);
       setError(`Error: ${err.message}`);
     }
-
-    setIsPending(false);
   };
 
   return { login, error, isPending };
