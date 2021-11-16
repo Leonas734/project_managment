@@ -5,14 +5,14 @@ export default function ProjectTask({ task }) {
     <div className={styles.task}>
       <h3>{task.title}</h3>
       <p>Due date: </p>
-      {task.task_users_details.map((user, index) => {
+      {task.task_users_details.map((user) => {
         return (
           <img
-            key={`task_img_${task.id}`}
+            alt="User profile"
+            key={`user_img_${user.id}`}
             src={`http://127.0.0.1:8000${user.img}`}></img>
         );
       })}
-      {console.log(task)}
     </div>
   );
 }

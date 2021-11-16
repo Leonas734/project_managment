@@ -16,7 +16,7 @@ export default function Home() {
 
   return (
     <div className={styles.home}>
-      {/* Projects list */}
+      {/* Projects list SIDEBAR */}
       <div className={styles.projects}>
         <p>New project</p>
         {isPending && <p>Loading...</p>}
@@ -36,7 +36,11 @@ export default function Home() {
           })}
         {error && <p>{error}</p>}
       </div>
-      <div className={styles.users}>Users</div>
+
+      {/* CURRENT PROJECT USERS */}
+      <div className={styles.users}>{console.log(allProjects)}</div>
+
+      {/* CURRENT PROJECT */}
       <div className={styles.project}>
         <CurrentProject projectId={currentProject} />
       </div>
