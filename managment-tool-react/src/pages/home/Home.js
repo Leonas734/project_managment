@@ -21,7 +21,7 @@ export default function Home() {
       <div className={styles.projects}>
         <a href="#">New project</a>
         {allProjects.map((project, index) => {
-          if (index === 0 && currentProject === null) {
+          if (index === 0 && !currentProject) {
             setCurrentProject(project.id);
           }
           return (
@@ -38,7 +38,6 @@ export default function Home() {
       <div className={styles.filters}>Filters</div>
       <div className={styles.users}>Users</div>
       <div className={styles.tasks}>Current project</div>
-      {currentProject}
     </div>
   );
 }
