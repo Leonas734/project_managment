@@ -1,7 +1,7 @@
 .nav-bar {
   position: relative;
   height: 3rem;
-  background-color: lightgray;
+  background-color: #e9ecef;
 }
 
 .nav-title {
@@ -26,7 +26,7 @@
   position: absolute;
   height: 300px;
   width: 300px;
-  background-color: lightgray;
+  background-color: rgb(235, 235, 235);
   top: 100%;
   right: 0;
 }
