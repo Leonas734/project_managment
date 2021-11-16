@@ -14,6 +14,12 @@ export default function Home() {
     getProjects();
   }, [getProjects]);
 
+  const getCurrentProjectUsers = () => {
+    return allProjects.filter((project) => {
+      return project.id === currentProject;
+    })[0].project_users;
+  };
+
   return (
     <div className={styles.home}>
       {/* Projects list SIDEBAR */}
@@ -39,14 +45,19 @@ export default function Home() {
 
       {/* CURRENT PROJECT USERS */}
       <div className={styles.users}>
-        <h3>Project userss</h3>
+        <h3>Project users</h3>
         {allProjects &&
           currentProject &&
-          console.log(
-            allProjects.filter((project) => {
-              return project.id === currentProject;
-            })
-          )}
+          getCurrentProjectUsers().map((user) => {
+            return (
+              <div key={`project_user_${user.id}`}>
+                <p>{user.username}</p>
+                <img
+                  alt="User profile"
+                  src={`http://127.0.0.1:8000${user.img}`}></img>
+              </div>
+            );
+          })}
       </div>
 
       {/* CURRENT PROJECT */}

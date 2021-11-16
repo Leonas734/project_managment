@@ -45,14 +45,17 @@ export default function CurrentProject({ projectId }) {
               })}
             </div>
           </div>
-          <div className={styles["project-tasks"]}>
-            {project.all_tasks.map((task) => {
-              // Check if task was filtered out
-              if (filterTag !== "all" && task.filter_tag !== filterTag)
-                return null;
-              return <ProjectTask key={task.id} task={task} />;
-            })}
-          </div>
+          {project.all_tasks.length < 1 && <p>No tasks for current project</p>}
+          {project.all_tasks.length > 0 && (
+            <div className={styles["project-tasks"]}>
+              {project.all_tasks.map((task) => {
+                // Check if task was filtered out
+                if (filterTag !== "all" && task.filter_tag !== filterTag)
+                  return null;
+                return <ProjectTask key={task.id} task={task} />;
+              })}
+            </div>
+          )}
         </>
       )}
 
