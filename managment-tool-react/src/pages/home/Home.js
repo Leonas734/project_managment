@@ -37,7 +37,7 @@ export default function Home() {
         {error && <p>{error}</p>}
       </div>
       <div className={styles.users}>Users</div>
-      <div className={styles.tasks}>
+      <div className={styles.project}>
         <CurrentProject projectId={currentProject} />
       </div>
     </div>

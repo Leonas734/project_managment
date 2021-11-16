@@ -1,0 +1,31 @@
+.project {
+  position: relative;
+}
+
+.project h1 {
+  margin-bottom: 0;
+}
+
+.description {
+  margin-top: 0;
+  font-size: 1.2rem;
+}
+
+.tags p {
+  margin: 1rem;
+  display: inline;
+  font-size: 1.1rem;
+  color: grey;
+}
+
+.active-tag {
+  color: #74c0fc !important;
+}
+
+.project-tasks {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-gap: 1rem;
+  margin: 0 1rem;
+}
