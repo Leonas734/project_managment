@@ -1,10 +1,10 @@
 from django.contrib.auth import authenticate
 from django.shortcuts import get_object_or_404
 
-from api.models import Project, ProjectTask, User
-from api.serializers import ProjectSerializerLight, UserSerializer, ProjectSerializer, ProjectTaskSerializer
+from api.models import Project, ProjectTask, User, ProjectTask
+from api.serializers import ProjectSerializerLight, TaskCommentSerializer, UserSerializer, ProjectSerializer, ProjectTaskSerializer
 
-from rest_framework import status, viewsets
+from rest_framework import serializers, status, viewsets
 from rest_framework.response import Response
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny
@@ -115,11 +115,22 @@ class ProjectTaskViewSet(viewsets.ModelViewSet):
             
         def list(self, request):
             return Response({'detail': "Not found."}, status=status.HTTP_400_BAD_REQUEST)
-        
-        # if request.method == 'DELETE':
-        #     print("DELETE TASK")
-        # if request.method == 'PUT':
-        #     print("UPDATE TASK")
 
-        # if request.method == 'GET':
-        #     print(request)
+class TaskCommentViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticated, )
+    authentication_classes = (TokenAuthentication,  )
+    http_method_names = ['post']
+
+    def create(self, request):
+        serializer = TaskCommentSerializer(data=request.data)
+        if serializer.is_valid():
+            task_id = request.data['task']
+            task = get_object_or_404(ProjectTask, id=task_id)
+            # Check if user is part of project before allowing him to post a comment on a task
+            if not request.user in task.project.users.all() or request.user.id != int(request.data['user']):
+                return Response({'detail': "Not found."}, status=status.HTTP_400_BAD_REQUEST)
+            print(serializer.validated_data)
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

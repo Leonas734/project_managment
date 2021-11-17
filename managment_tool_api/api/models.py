@@ -4,12 +4,11 @@ from datetime import date
 from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
-    img = models.ImageField(default=None, blank=True)
+    img = models.ImageField(default='/default_profile_picture.png')
 
     # Returns users Id, username and image URL in a dict object.
     def user_details(self):
         return {"id": self.id, "username": self.username, "img": self.img.url}
-
 
 class Project(models.Model):
     filter_tags = models.JSONField(blank=True, default=list)

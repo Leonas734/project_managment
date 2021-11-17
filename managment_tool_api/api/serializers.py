@@ -25,8 +25,11 @@ class ProjectSerializerLight(serializers.ModelSerializer):
 
 class TaskCommentSerializer(serializers.ModelSerializer):
     class Meta:
+        extra_kwargs = {
+        'user': {'write_only': True, 'required': True},
+        }
         model = TaskComment
-        fields = ['id', 'text', 'date_and_time', 'task', 'user_details']
+        fields = ['id', 'user', 'text', 'date_and_time', 'task','user_details']
 
 class ProjectTaskSerializer(serializers.ModelSerializer):
     all_comments = TaskCommentSerializer(many=True, required=False)
