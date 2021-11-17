@@ -35,9 +35,13 @@ export default function Home() {
   }, [getProjects, allProjects, params.project_id]);
 
   const getCurrentProjectUsers = () => {
-    return allProjects.filter((project) => {
+    const filteredProjects = allProjects.filter((project) => {
       return project.id === currentProject;
-    })[0].project_users;
+    });
+    // State not updated yet, return an empty array.
+    // Page will auto refresh if thanks to useEffect
+    if (filteredProjects.length === 0) return [];
+    return filteredProjects[0].project_users;
   };
 
   const newProjectClickHandler = () => {
@@ -70,24 +74,31 @@ export default function Home() {
       </div>
 
       {/* CURRENT PROJECT USERS */}
-      <div className={styles.users}>
-        <h3>Project users</h3>
-        {allProjects &&
-          currentProject &&
-          getCurrentProjectUsers().map((user) => {
-            return (
-              <div key={`project_user_${user.id}`}>
-                <p>{user.username}</p>
-                <img
-                  alt="User profile"
-                  src={`http://127.0.0.1:8000${user.img}`}></img>
-              </div>
-            );
-          })}
-      </div>
+      {currentProject && (
+        <div className={styles.users}>
+          <h3>Project users</h3>
+          {allProjects &&
+            currentProject &&
+            getCurrentProjectUsers().map((user) => {
+              return (
+                <div key={`project_user_${user.id}`}>
+                  <p>{user.username}</p>
+                  <img
+                    alt="User profile"
+                    src={`http://127.0.0.1:8000${user.img}`}></img>
+                </div>
+              );
+            })}
+        </div>
+      )}
 
       {/* CURRENT PROJECT */}
-      {!currentProject && !params.task_id && <NewProject />}
+      {!currentProject && !params.task_id && (
+        <NewProject
+          styleClassName={styles["new-project"]}
+          refreshProjectsList={getProjects}
+        />
+      )}
       {!params.task_id && currentProject && (
         <div className={styles.project}>
           <CurrentProject projectId={currentProject} />

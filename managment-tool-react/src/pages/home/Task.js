@@ -54,7 +54,6 @@ export default function Task({ taskId, setActiveProject }) {
                   <p className={styles["username"]}>
                     {comment.user_details.username}
                   </p>
-                  {console.log(comment)}
                   <img
                     alt="User profile"
                     src={`http://127.0.0.1:8000${comment.user_details.img}`}></img>

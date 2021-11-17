@@ -1,26 +1,31 @@
 import { useCallback, useState } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
 
-export const useCreateComment = () => {
+export const useCreateProject = () => {
   const { authToken, userId } = useAuthContext();
 
   const [error, setError] = useState(null);
   const [isPending, setIsPending] = useState(false);
   const [response, setResponse] = useState(null);
 
-  const createComment = useCallback(
-    async (taskId, text) => {
+  const createProject = useCallback(
+    async (title, description) => {
       setError(null);
       setIsPending(true);
 
       try {
-        const res = await fetch("http://127.0.0.1:8000/api/comment/", {
+        const res = await fetch("http://127.0.0.1:8000/api/projects/", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Token ${authToken}`,
           },
-          body: JSON.stringify({ user: +userId, task: +taskId, text }),
+          body: JSON.stringify({
+            creator: +userId,
+            users: [+userId],
+            title,
+            description,
+          }),
         });
 
         const data = await res.json();
@@ -37,5 +42,5 @@ export const useCreateComment = () => {
     },
     [authToken, userId]
   );
-  return { createComment, error, isPending, response };
+  return { createProject, error, isPending, response };
 };

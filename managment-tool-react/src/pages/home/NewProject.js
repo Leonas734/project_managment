@@ -1,17 +1,28 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./NewProject.module.css";
+import { useCreateProject } from "../../hooks/useCreateProject";
+import { useNavigate } from "react-router-dom";
 
-export default function NewProject() {
+export default function NewProject({ styleClassName, refreshProjectsList }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const { createProject, error, isPending, response } = useCreateProject();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (response) {
+      refreshProjectsList();
+      navigate(`/project/${response.id}`);
+    }
+  }, [response]);
 
   const newProjectHandler = (e) => {
     e.preventDefault();
-    console.log(title, description);
+    createProject(title, description);
   };
 
   return (
-    <div>
+    <div className={styleClassName}>
       <h1>New Project</h1>
       <form className={styles["new-project-form"]} onSubmit={newProjectHandler}>
         <label>
@@ -32,6 +43,7 @@ export default function NewProject() {
             }}
             type="text"></textarea>
         </label>
+        {error && <p>{error}</p>}
         <button>Create</button>
       </form>
     </div>
