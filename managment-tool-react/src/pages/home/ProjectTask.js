@@ -1,13 +1,15 @@
 import styles from "./ProjectTask.module.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function ProjectTask({ task }) {
   const navigate = useNavigate();
+  const location = useLocation();
   return (
     <div
       className={styles.task}
       onClick={() => {
-        navigate(`/project_task/${task.id}`);
+        if (location.pathname !== `/project_task/${task.id}`)
+          navigate(`/project_task/${task.id}`);
       }}>
       <h3>{task.title}</h3>
       <p>Due date: {task.due_date} </p>

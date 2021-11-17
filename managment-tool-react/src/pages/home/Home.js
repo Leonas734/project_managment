@@ -4,15 +4,19 @@ import Task from "./Task";
 import NewProject from "./NewProject";
 import styles from "./Home.module.css";
 
-import { useAllProjects } from "../../hooks/useAllProjects.js";
+import { useFetchAllProjects } from "../../hooks/useFetchAllProjects.js";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
 
+import { useNavigate, useLocation } from "react-router-dom";
+
 export default function Home() {
   const params = useParams();
   const [currentProject, setCurrentProject] = useState(null);
-  const { getProjects, error, isPending, allProjects } = useAllProjects();
+  const { getProjects, error, isPending, allProjects } = useFetchAllProjects();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   // Initial setup
   useEffect(() => {
@@ -36,11 +40,20 @@ export default function Home() {
     })[0].project_users;
   };
 
+  const newProjectClickHandler = () => {
+    if (location.pathname !== "/") navigate("/");
+    setCurrentProject(null);
+  };
+
   return (
     <div className={styles.home}>
       {/* Projects list SIDEBAR */}
       <div className={styles.projects}>
-        <p>New project</p>
+        <p
+          onClick={newProjectClickHandler}
+          className={!currentProject ? styles["active-sidebar"] : ""}>
+          New project
+        </p>
         {isPending && <p>Loading...</p>}
         {allProjects &&
           allProjects.map((project) => {

@@ -1,11 +1,11 @@
-import { useProject } from "../../hooks/useProject";
+import { useFetchProject } from "../../hooks/useFetchProject";
 import { useEffect, useState } from "react";
 import styles from "./CurrentProject.module.css";
 
 import ProjectTask from "./ProjectTask";
 
 export default function CurrentProject({ projectId }) {
-  const { getProject, error, isPending, project } = useProject();
+  const { getProject, error, isPending, project } = useFetchProject();
   const [filterTag, setFilterTag] = useState("all");
 
   useEffect(() => {

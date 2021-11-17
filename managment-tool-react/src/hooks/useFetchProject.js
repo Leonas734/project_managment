@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
 
-export const useProject = (id) => {
+export const useFetchProject = (id) => {
   const { authToken } = useAuthContext();
 
   const [error, setError] = useState(null);

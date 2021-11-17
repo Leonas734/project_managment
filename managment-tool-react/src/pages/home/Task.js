@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { useTask } from "../../hooks/useTask";
+import { useFetchTask } from "../../hooks/useFetchTask";
 import { useCreateComment } from "../../hooks/useCreateComment";
 import styles from "./Task.module.css";
 
 export default function Task({ taskId, setActiveProject }) {
   const [newComment, setNewComment] = useState("");
-  const { getTask, error, isPending, task } = useTask();
+  const { getTask, error, isPending, task } = useFetchTask();
   const { createComment, error: commentError } = useCreateComment();
 
   useEffect(() => {
