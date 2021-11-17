@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { useTask } from "../../hooks/useTask";
-
+import { useCreateComment } from "../../hooks/useCreateComment";
 import styles from "./Task.module.css";
 
 export default function Task({ taskId, setActiveProject }) {
   const [newComment, setNewComment] = useState("");
   const { getTask, error, isPending, task } = useTask();
+  const { createComment } = useCreateComment();
+
   useEffect(() => {
     if (!task) {
       getTask(taskId);
@@ -17,14 +19,16 @@ export default function Task({ taskId, setActiveProject }) {
 
   const commentSubmitHandler = (e) => {
     e.preventDefault();
-    console.log(newComment);
+    createComment(task.id, newComment);
     setNewComment("");
+    getTask(task.id);
   };
 
   return (
     <div className={styles.task}>
       {task && (
         <>
+          {/* TASK DESCRIPTION */}
           <div className={styles["task-desc"]}>
             <h3>{task.title}</h3>
             <p>{task.description}</p>
@@ -39,19 +43,22 @@ export default function Task({ taskId, setActiveProject }) {
               );
             })}
           </div>
+          {/* COMMENTS SECTION */}
           <div className={styles.comments}>
             <h3>Project Comments</h3>
             {task.all_comments.map((comment) => {
               return (
                 <div
-                  key={`user_comment_${comment.user_details.id}`}
+                  key={`user_comment_${comment.id}`}
                   className={styles["user-comment-container"]}>
                   <p className={styles["username"]}>
                     {comment.user_details.username}
                   </p>
+                  {console.log(comment)}
                   <img
                     alt="User profile"
                     src={`http://127.0.0.1:8000${comment.user_details.img}`}></img>
+                  <p className={styles["date"]}>{comment.date_and_time}</p>
                   <p className={styles["text"]}>{comment.text}</p>
                 </div>
               );
@@ -71,8 +78,6 @@ export default function Task({ taskId, setActiveProject }) {
           </div>
         </>
       )}
-
-      {console.log(task)}
       {error && <p>{error}</p>}
       {isPending && <p>Loading task...</p>}
     </div>

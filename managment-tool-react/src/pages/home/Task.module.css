@@ -1,7 +1,7 @@
 .task {
   display: grid;
   grid-template-columns: 40% 1fr;
-  height: 94vh;
+  height: 93vh;
 }
 
 .task img {
@@ -15,7 +15,6 @@
   padding-top: 1rem;
   text-align: left;
   background-color: white;
-  height: 100%;
 }
 
 .task-desc h3 {
@@ -24,6 +23,11 @@
 
 .task-desc p {
   color: grey;
+}
+/* COMMENTS SECTION STYLING BELOW  */
+
+.comments {
+  overflow-y: scroll;
 }
 
 .user-comment-container {
@@ -43,8 +47,15 @@
   display: inline-block;
   margin: 0;
 }
+.user-comment-container .date {
+  font-weight: bold;
+  color: grey;
+  font-size: 0.9rem;
+  margin: 0;
+}
 .user-comment-container .text {
   padding-bottom: 1rem;
+  margin-top: 0.2rem;
 }
 .comments form {
   text-align: left;
