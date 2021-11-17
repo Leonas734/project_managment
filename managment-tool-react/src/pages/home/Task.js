@@ -6,7 +6,7 @@ import styles from "./Task.module.css";
 export default function Task({ taskId, setActiveProject }) {
   const [newComment, setNewComment] = useState("");
   const { getTask, error, isPending, task } = useTask();
-  const { createComment } = useCreateComment();
+  const { createComment, error: commentError } = useCreateComment();
 
   useEffect(() => {
     if (!task) {
@@ -29,9 +29,9 @@ export default function Task({ taskId, setActiveProject }) {
       {task && (
         <>
           {/* TASK DESCRIPTION */}
-          <div className={styles["task-desc"]}>
+          <div className={styles["task-desc-container"]}>
             <h3>{task.title}</h3>
-            <p>{task.description}</p>
+            <p className={styles["task-desc-text"]}>{task.description}</p>
             <p>Due date: {task.due_date}</p>
             <p>Assigned users</p>
             {task.task_users_details.map((user) => {
@@ -73,6 +73,7 @@ export default function Task({ taskId, setActiveProject }) {
                   }}
                   type="text"></input>
               </label>
+              {commentError && <p>{commentError}</p>}
               <button>Add comment</button>
             </form>
           </div>

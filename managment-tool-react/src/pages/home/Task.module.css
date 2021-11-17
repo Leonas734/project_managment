@@ -10,24 +10,27 @@
   border-radius: 50%;
 }
 
-.task-desc {
-  padding-left: 1rem;
+.task-desc-container {
   padding-top: 1rem;
-  text-align: left;
-  background-color: white;
 }
 
-.task-desc h3 {
+.task-desc-container h3 {
   margin: 0;
 }
-
-.task-desc p {
+.task-desc-container p {
   color: grey;
+}
+.task-desc-text {
+  color: black !important;
 }
 /* COMMENTS SECTION STYLING BELOW  */
 
 .comments {
+  padding-top: 1rem;
   overflow-y: scroll;
+}
+.comments h3 {
+  margin: 0;
 }
 
 .user-comment-container {
@@ -81,5 +84,10 @@
 
 .comments button {
   font-size: 1.1rem;
+  margin-left: 5%;
+}
+
+.comments form p {
+  color: red;
   margin-left: 5%;
 }
