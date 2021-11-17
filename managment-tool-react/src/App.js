@@ -23,6 +23,14 @@ function App() {
             element={userId ? <Home /> : <Navigate to="/login" />}
           />
           <Route
+            path="project_task/:task_id"
+            element={userId ? <Home /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="project/:project_id"
+            element={userId ? <Home /> : <Navigate to="/login" />}
+          />
+          <Route
             path="/login"
             element={userId ? <Navigate to="/" /> : <Login />}
           />

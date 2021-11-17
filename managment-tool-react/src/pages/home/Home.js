@@ -1,18 +1,34 @@
 import Project from "./Project";
-import styles from "./Home.module.css";
-import { useAllProjects } from "../../hooks/useAllProjects.js";
 import CurrentProject from "./CurrentProject";
+import Task from "./Task";
+import NewProject from "./NewProject";
+import styles from "./Home.module.css";
 
+import { useAllProjects } from "../../hooks/useAllProjects.js";
+import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
 
 export default function Home() {
+  const params = useParams();
   const [currentProject, setCurrentProject] = useState(null);
   const { getProjects, error, isPending, allProjects } = useAllProjects();
 
+  // Initial setup
   useEffect(() => {
-    getProjects();
-  }, [getProjects]);
+    if (!allProjects) {
+      getProjects();
+    }
+    /* No url, show new project. This if statement is used 
+    when user user clicks 'back' button in their browser */
+    if (!params.project_id) {
+      setCurrentProject(null);
+    }
+    // Check if user went directly to a project url
+    if (params.project_id) {
+      setCurrentProject(+params.project_id);
+    }
+  }, [getProjects, allProjects, params.project_id]);
 
   const getCurrentProjectUsers = () => {
     return allProjects.filter((project) => {
@@ -27,10 +43,7 @@ export default function Home() {
         <p>New project</p>
         {isPending && <p>Loading...</p>}
         {allProjects &&
-          allProjects.map((project, index) => {
-            if (index === 0 && !currentProject) {
-              setCurrentProject(project.id);
-            }
+          allProjects.map((project) => {
             return (
               <Project
                 key={project.id}
@@ -61,9 +74,15 @@ export default function Home() {
       </div>
 
       {/* CURRENT PROJECT */}
-      <div className={styles.project}>
-        <CurrentProject projectId={currentProject} />
-      </div>
+      {!currentProject && <NewProject />}
+      {!params.task_id && currentProject && (
+        <div className={styles.project}>
+          <CurrentProject projectId={currentProject} />
+        </div>
+      )}
+      {params.task_id && (
+        <Task taskId={params.task_id} setActiveProject={setCurrentProject} />
+      )}
     </div>
   );
 }

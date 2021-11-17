@@ -17,8 +17,8 @@ export default function CurrentProject({ projectId }) {
   return (
     <>
       {!isPending && project && (
-        // Project INFO
         <>
+          {/* Project INFO & Filters */}
           <div className={styles["project"]}>
             <h1>{project.title}</h1>
             <p className={styles["description"]}>{project.description}</p>
@@ -47,6 +47,7 @@ export default function CurrentProject({ projectId }) {
           </div>
           {project.all_tasks.length < 1 && <p>No tasks for current project</p>}
           {project.all_tasks.length > 0 && (
+            // Project Tasks
             <div className={styles["project-tasks"]}>
               {project.all_tasks.map((task) => {
                 // Check if task was filtered out
