@@ -55,7 +55,9 @@ export default function Home() {
       <div className={styles.projects}>
         <p
           onClick={newProjectClickHandler}
-          className={!currentProject ? styles["active-sidebar"] : ""}>
+          className={
+            !currentProject ? styles["active-sidebar"] : styles["new-project"]
+          }>
           New project
         </p>
         {isPending && <p>Loading...</p>}

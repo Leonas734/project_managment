@@ -13,7 +13,7 @@ export default function Project({ project, projectChange, active }) {
         if (location.pathname !== `/project/${project.id}`)
           navigate(`/project/${project.id}`);
       }}
-      className={active ? styles["active-project"] : ""}>
+      className={active ? styles["active-project"] : styles["project"]}>
       <p>{project.title}</p>
     </div>
   );

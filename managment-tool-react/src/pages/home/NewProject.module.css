@@ -16,7 +16,8 @@
 .new-project-form input {
   padding: 8px 6px;
   font-size: 1em;
-  border-color: gray;
+  font-family: inherit;
+  border: solid 1px grey;
   width: 90%;
 }
 
@@ -29,8 +30,14 @@
 }
 
 .new-project-form button {
-  width: 50%;
   font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  background-color: #74c0fc;
+  border: none;
+  padding: 0.4rem;
+  border-radius: 5%;
+  width: 50%;
 }
 
 .error {

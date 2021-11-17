@@ -20,6 +20,10 @@
 
 .active-tag {
   color: #74c0fc !important;
+  cursor: pointer;
+}
+.tag {
+  cursor: pointer;
 }
 
 .project-tasks {

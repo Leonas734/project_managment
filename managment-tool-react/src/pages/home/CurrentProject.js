@@ -25,7 +25,9 @@ export default function CurrentProject({ projectId }) {
             <div className={styles.tags}>
               <p>filter:</p>
               <p
-                className={filterTag === "all" ? styles["active-tag"] : ""}
+                className={
+                  filterTag === "all" ? styles["active-tag"] : styles["tag"]
+                }
                 onClick={() => {
                   setFilterTag("all");
                 }}>
@@ -35,7 +37,9 @@ export default function CurrentProject({ projectId }) {
                 return (
                   <p
                     key={index}
-                    className={filterTag === tag ? styles["active-tag"] : ""}
+                    className={
+                      filterTag === tag ? styles["active-tag"] : styles["tag"]
+                    }
                     onClick={() => {
                       setFilterTag(tag);
                     }}>

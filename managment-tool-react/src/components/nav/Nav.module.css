@@ -23,6 +23,7 @@
 }
 
 .nav-user-menu {
+  z-index: 3;
   position: absolute;
   height: 300px;
   width: 300px;

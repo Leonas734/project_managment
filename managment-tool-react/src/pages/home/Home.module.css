@@ -16,6 +16,11 @@
 .active-sidebar {
   background-color: #f1f3f5;
   border-radius: 10% 10% 10% 10%/ 40% 0% 0% 40%;
+  cursor: pointer;
+}
+
+.new-project {
+  cursor: pointer;
 }
 
 .projects div {

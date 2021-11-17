@@ -11,7 +11,8 @@
 }
 
 .task-desc-container {
-  padding-top: 1rem;
+  background-color: #e9ecef;
+  margin: 1rem 0 1rem 1rem;
 }
 
 .task-desc-container h3 {
@@ -36,7 +37,9 @@
 .user-comment-container {
   text-align: left;
   padding-left: 1rem;
-  background-color: #e9ecef;
+  background-color: #74c0fc;
+  border: solid 1px rgb(187, 187, 187);
+  border-radius: 2%;
   margin: 2rem;
 }
 
@@ -76,15 +79,21 @@
 }
 .task-desc-container input {
   padding: 8px 6px;
-  font-size: 1em;
-  color: #777;
+  border: solid 1px grey;
   width: 90%;
 }
 
 .task-desc-container button {
   font-size: 1.1rem;
+  font-weight: bold;
+  color: white;
+  background-color: #74c0fc;
+  border: none;
+  padding: 0.4rem;
+  border-radius: 5%;
 }
 
 .task-desc-container form p {
   color: red;
+  margin: 0;
 }
