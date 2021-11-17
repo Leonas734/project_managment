@@ -66,3 +66,6 @@ class TaskComment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date_and_time = models.DateTimeField(auto_now=True)
     task = models.ForeignKey(ProjectTask, on_delete=models.CASCADE, related_name='project_task_comment')
+
+    def user_details(self):
+        return self.user.user_details()
