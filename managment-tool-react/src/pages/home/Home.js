@@ -74,7 +74,7 @@ export default function Home() {
       </div>
 
       {/* CURRENT PROJECT */}
-      {!currentProject && <NewProject />}
+      {!currentProject && !params.task_id && <NewProject />}
       {!params.task_id && currentProject && (
         <div className={styles.project}>
           <CurrentProject projectId={currentProject} />

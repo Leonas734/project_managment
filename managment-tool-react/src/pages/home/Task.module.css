@@ -1,0 +1,74 @@
+.task {
+  display: grid;
+  grid-template-columns: 40% 1fr;
+  height: 94vh;
+}
+
+.task img {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+}
+
+.task-desc {
+  padding-left: 1rem;
+  padding-top: 1rem;
+  text-align: left;
+  background-color: white;
+  height: 100%;
+}
+
+.task-desc h3 {
+  margin: 0;
+}
+
+.task-desc p {
+  color: grey;
+}
+
+.user-comment-container {
+  text-align: left;
+  padding-left: 1rem;
+  background-color: #e9ecef;
+  margin: 2rem;
+}
+
+.user-comment-container img {
+  display: inline-block;
+  transform: translate(10px, 10px);
+}
+
+.user-comment-container .username {
+  font-weight: bold;
+  display: inline-block;
+  margin: 0;
+}
+.user-comment-container .text {
+  padding-bottom: 1rem;
+}
+.comments form {
+  text-align: left;
+  padding-left: 1rem;
+}
+
+.comments label {
+  display: block;
+  margin: 30px auto;
+  width: 90%;
+  font-size: 1.3rem;
+}
+.comments span {
+  display: block;
+  margin-bottom: 6px;
+}
+.comments input {
+  padding: 8px 6px;
+  font-size: 1em;
+  color: #777;
+  width: 90%;
+}
+
+.comments button {
+  font-size: 1.1rem;
+  margin-left: 5%;
+}
