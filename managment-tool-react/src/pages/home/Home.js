@@ -51,7 +51,7 @@ export default function Home() {
 
   return (
     <div className={styles.home}>
-      {/* Projects list SIDEBAR */}
+      {/* SIDEBAR PROJECT LIST */}
       <div className={styles.projects}>
         <p
           onClick={newProjectClickHandler}
@@ -92,18 +92,21 @@ export default function Home() {
         </div>
       )}
 
-      {/* CURRENT PROJECT */}
+      {/* NEW PROJECT VIEW */}
       {!currentProject && !params.task_id && (
         <NewProject
           styleClassName={styles["new-project"]}
           refreshProjectsList={getProjects}
         />
       )}
+
+      {/* CURRENT PROJECT VIEW */}
       {!params.task_id && currentProject && (
         <div className={styles.project}>
           <CurrentProject projectId={currentProject} />
         </div>
       )}
+      {/* CURRENT TASK VIEW*/}
       {params.task_id && (
         <Task taskId={params.task_id} setActiveProject={setCurrentProject} />
       )}

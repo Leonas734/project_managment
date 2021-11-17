@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 export default function NewProject({ styleClassName, refreshProjectsList }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const { createProject, error, isPending, response } = useCreateProject();
+  const { createProject, error, response } = useCreateProject();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -14,7 +14,7 @@ export default function NewProject({ styleClassName, refreshProjectsList }) {
       refreshProjectsList();
       navigate(`/project/${response.id}`);
     }
-  }, [response]);
+  }, [response, navigate, refreshProjectsList]);
 
   const newProjectHandler = (e) => {
     e.preventDefault();

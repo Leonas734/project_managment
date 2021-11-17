@@ -3,7 +3,7 @@ import { useFetchTask } from "../../hooks/useFetchTask";
 import { useCreateComment } from "../../hooks/useCreateComment";
 import styles from "./Task.module.css";
 
-export default function Task({ taskId, setActiveProject }) {
+export default function Task({ projectId, taskId, setActiveProject }) {
   const [newComment, setNewComment] = useState("");
   const { getTask, error, isPending, task } = useFetchTask();
   const { createComment, error: commentError } = useCreateComment();
