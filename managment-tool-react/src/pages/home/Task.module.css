@@ -60,34 +60,31 @@
   padding-bottom: 1rem;
   margin-top: 0.2rem;
 }
-.comments form {
-  text-align: left;
+.task-desc-container form {
   padding-left: 1rem;
 }
 
-.comments label {
+.task-desc-container label {
   display: block;
   margin: 30px auto;
   width: 90%;
   font-size: 1.3rem;
 }
-.comments span {
+.task-desc-container span {
   display: block;
   margin-bottom: 6px;
 }
-.comments input {
+.task-desc-container input {
   padding: 8px 6px;
   font-size: 1em;
   color: #777;
   width: 90%;
 }
 
-.comments button {
+.task-desc-container button {
   font-size: 1.1rem;
-  margin-left: 5%;
 }
 
-.comments form p {
+.task-desc-container form p {
   color: red;
-  margin-left: 5%;
 }

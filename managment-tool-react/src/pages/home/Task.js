@@ -42,6 +42,19 @@ export default function Task({ projectId, taskId, setActiveProject }) {
                   src={`http://127.0.0.1:8000${user.img}`}></img>
               );
             })}
+            <form onSubmit={commentSubmitHandler}>
+              <label>
+                <span>New comment</span>
+                <input
+                  value={newComment}
+                  onChange={(e) => {
+                    setNewComment(e.target.value);
+                  }}
+                  type="text"></input>
+              </label>
+              {commentError && <p>{commentError}</p>}
+              <button>Add comment</button>
+            </form>
           </div>
           {/* COMMENTS SECTION */}
           <div className={styles.comments}>
@@ -62,19 +75,6 @@ export default function Task({ projectId, taskId, setActiveProject }) {
                 </div>
               );
             })}
-            <form onSubmit={commentSubmitHandler}>
-              <label>
-                <span>New comment</span>
-                <input
-                  value={newComment}
-                  onChange={(e) => {
-                    setNewComment(e.target.value);
-                  }}
-                  type="text"></input>
-              </label>
-              {commentError && <p>{commentError}</p>}
-              <button>Add comment</button>
-            </form>
           </div>
         </>
       )}
