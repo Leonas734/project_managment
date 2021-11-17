@@ -10,6 +10,7 @@
   grid-column: 1/2;
   background-color: #74c0fc;
   font-size: 1.3rem;
+  overflow-y: scroll;
 }
 
 .active-sidebar {
