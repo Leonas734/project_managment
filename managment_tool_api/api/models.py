@@ -48,7 +48,7 @@ class ProjectTask(models.Model):
         return len(total)
 
     def all_comments(self):
-        comments = self.project_task_comment.filter(task=self)
+        comments = self.project_task_comment.filter(task=self).order_by('-id')
         return comments
 
     def creator_details(self):

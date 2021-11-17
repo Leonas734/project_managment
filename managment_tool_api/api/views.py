@@ -101,7 +101,7 @@ class ProjectTaskViewSet(viewsets.ModelViewSet):
             # User does not have access to project to retrieve any of its tasks
             if not self.user_has_project_access(request.user, task.project):
                 return Response({'detail': "Not found."}, status=status.HTTP_400_BAD_REQUEST)
-
+            print(task)
             serializer = ProjectTaskSerializer(task)
             return Response(serializer.data, status=status.HTTP_200_OK)
 

@@ -29,7 +29,7 @@ class TaskCommentSerializer(serializers.ModelSerializer):
         'user': {'write_only': True, 'required': True},
         }
         model = TaskComment
-        fields = ['id', 'user', 'text', 'date_and_time', 'task','user_details']
+        fields = ['id', 'user', 'text', 'date_and_time', 'task', 'user_details']
 
 class ProjectTaskSerializer(serializers.ModelSerializer):
     all_comments = TaskCommentSerializer(many=True, required=False)
