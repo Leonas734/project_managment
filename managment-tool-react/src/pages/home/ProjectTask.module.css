@@ -4,6 +4,7 @@
   background-color: #74c0fc;
   margin-top: 1rem;
   cursor: pointer;
+  box-shadow: 2px 4px 8px 2px rgba(0, 0, 0, 0.2);
 }
 
 .task h3 {

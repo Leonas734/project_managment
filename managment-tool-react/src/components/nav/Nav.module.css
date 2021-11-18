@@ -30,6 +30,7 @@
   background-color: rgb(235, 235, 235);
   top: 100%;
   right: 0;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 .nav-user-menu p {
