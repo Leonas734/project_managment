@@ -9,14 +9,15 @@ export default function AccountSettings() {
       {!showPasswordChange && (
         <>
           <p
+            className={styles["option"]}
             onClick={() => {
               setShowPasswordChange(true);
             }}>
             Change password
           </p>
-          <p>----------</p>
-          <p>----------</p>
-          <p>----------</p>{" "}
+          <p className={styles["option"]}>----------</p>
+          <p className={styles["option"]}>----------</p>
+          <p className={styles["option"]}>----------</p>
         </>
       )}
       {showPasswordChange && (

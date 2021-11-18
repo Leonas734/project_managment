@@ -1,9 +1,13 @@
 .account-settings p {
   display: inline-block;
-  padding: 2rem;
   font-size: 1.5rem;
 }
 
 .account-settings a {
   display: block;
+}
+
+.account-settings .option {
+  cursor: pointer;
+  padding: 2rem;
 }
