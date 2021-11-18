@@ -39,7 +39,7 @@
   padding-left: 1rem;
   background-color: #74c0fc;
   border: solid 1px rgb(187, 187, 187);
-  border-radius: 2%;
+  border-radius: 10px;
   margin: 2rem;
 }
 
@@ -90,7 +90,7 @@
   background-color: #74c0fc;
   border: none;
   padding: 0.4rem;
-  border-radius: 5%;
+  border-radius: 10px;
 }
 
 .task-desc-container form p {
