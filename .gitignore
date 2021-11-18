@@ -5,3 +5,4 @@ __pycache__/
 settings.py
 db.sqlite3
 venv
+managment_tool_api/media
