@@ -92,6 +92,10 @@ class ProjectTaskViewSet(viewsets.ModelViewSet):
             serializer = ProjectTaskSerializer(data=request.data)
             if serializer.is_valid():
                 project_id = request.data['project']
+                # User trying to create task on EXAMPLE projects made for portfolio viewing.
+                if project_id == 43 or project_id == 45:
+                        return Response({'message': "To test this feature, please create your own project"}, status=status.HTTP_400_BAD_REQUEST)
+
                 project = get_object_or_404(Project, id=project_id)
                 # User not authorized to create tasks on current project
                 if not self.user_has_project_access(request.user, project):
@@ -131,6 +135,10 @@ class TaskCommentViewSet(viewsets.ModelViewSet):
         if serializer.is_valid():
             task_id = request.data['task']
             task = get_object_or_404(ProjectTask, id=task_id)
+            # User trying to create task comment on EXAMPLE projects made for portfolio viewing.
+            if task.project.id == 43 or task.project.id == 45:
+                return Response({'message': "To test this feature, please create your own project"}, status=status.HTTP_400_BAD_REQUEST)
+
             # Check if user is part of project before allowing him to post a comment on a task
             if not request.user in task.project.users.all() or request.user.id != int(request.data['user']):
                 return Response({'detail': "Not found."}, status=status.HTTP_400_BAD_REQUEST)
