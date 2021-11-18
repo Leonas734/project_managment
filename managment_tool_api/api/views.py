@@ -81,7 +81,7 @@ class ProjectTaskViewSet(viewsets.ModelViewSet):
         serializer_class = ProjectTaskSerializer
         permission_classes = (IsAuthenticated, )
         authentication_classes = (TokenAuthentication,  )
-        http_method_names = ['post', 'delete', 'get']
+        http_method_names = ['post', 'get']
 
         def user_has_project_access(self, user, project):
             if user in project.users.all():
