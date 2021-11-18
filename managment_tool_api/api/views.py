@@ -32,6 +32,11 @@ class UserViewSet(viewsets.ModelViewSet):
     def update(self, request, pk, *args, **kwargs):
         try:
             user = authenticate(username=request.user.username, password= request.data['current_password'])
+            if request.user.id == 2:
+                return Response (
+                {'message': 'Please create your own account to test this function.'},
+                status=status.HTTP_400_BAD_REQUEST
+                )
             # Correct passsowrd and user is curently authenticated to the account that is requesting the password change
             if user and request.user.id == int(pk):
                 user.set_password(request.data['new_password'])
@@ -101,7 +106,7 @@ class ProjectTaskViewSet(viewsets.ModelViewSet):
             # User does not have access to project to retrieve any of its tasks
             if not self.user_has_project_access(request.user, task.project):
                 return Response({'detail': "Not found."}, status=status.HTTP_400_BAD_REQUEST)
-            print(task)
+
             serializer = ProjectTaskSerializer(task)
             return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -129,7 +134,7 @@ class TaskCommentViewSet(viewsets.ModelViewSet):
             # Check if user is part of project before allowing him to post a comment on a task
             if not request.user in task.project.users.all() or request.user.id != int(request.data['user']):
                 return Response({'detail': "Not found."}, status=status.HTTP_400_BAD_REQUEST)
-            print(serializer.validated_data)
+
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:

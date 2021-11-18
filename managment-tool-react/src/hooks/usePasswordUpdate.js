@@ -15,6 +15,7 @@ export const usePasswordUpdate = () => {
     setError(null);
     setIsPending(true);
     try {
+      console.log(authToken);
       if (newPassword !== repeatNewPassword) {
         throw new Error("Passwords do not match");
       }

@@ -5,6 +5,7 @@ export const AuthContext = createContext();
 
 export const authReducer = (state, action) => {
   if (action.type === "LOGIN") {
+    console.log(action.payload.authToken);
     return {
       authToken: action.payload.authToken,
       userId: action.payload.userId,
@@ -22,9 +23,16 @@ export const authReducer = (state, action) => {
 };
 
 export const AuthContextProvider = ({ children }) => {
-  const [userCookies] = useCookies(["userDetailsCookie"]);
+  const [userCookies, setUserCookies] = useCookies(["userDetailsCookie"]);
+  // Make cookie in case user doesn't have one/deletes theirs
+  if (!userCookies.userDetailsCookie) {
+    setUserCookies("userDetailsCookie", {
+      authToken: null,
+      userName: null,
+      userId: null,
+    });
+  }
   const { authToken, userId, userName } = userCookies.userDetailsCookie;
-
   const [state, dispatch] = useReducer(authReducer, {
     authToken: authToken,
     userName: userName,
