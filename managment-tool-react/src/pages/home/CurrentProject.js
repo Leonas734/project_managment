@@ -3,27 +3,48 @@ import { useEffect, useState } from "react";
 import styles from "./CurrentProject.module.css";
 
 import ProjectTask from "./ProjectTask";
+import NewTask from "./NewTask";
 
 export default function CurrentProject({ projectId }) {
   const { getProject, error, isPending, project } = useFetchProject();
   const [filterTag, setFilterTag] = useState("all");
   const [createNewTask, setCreateNewTask] = useState(false);
+  const [newTaskButton, setNewTaskButton] = useState("New Task");
 
   useEffect(() => {
     if (projectId) {
       getProject(projectId);
     }
+    return () => {
+      setCreateNewTask(false);
+      setNewTaskButton("New Task");
+    };
   }, [projectId, getProject]);
+
+  const newTaskClickHandler = () => {
+    setCreateNewTask((prevState) => {
+      if (prevState) {
+        setNewTaskButton("New Task");
+      } else {
+        setNewTaskButton("Cancel");
+      }
+      return !prevState;
+    });
+  };
 
   return (
     <>
       {!isPending && project && (
         <>
-          {/* Project INFO & Filters */}
+          {/* PROJECT INFO & FILTERS */}
           <div className={styles["project"]}>
-            <h1>{project.title}</h1>
-            <p className={styles["description"]}>{project.description}</p>
-            {project.all_tasks.length > 0 && (
+            {!createNewTask && <h1>{project.title}</h1>}
+            {!createNewTask && (
+              <p className={styles["description"]}>{project.description}</p>
+            )}
+            <button onClick={newTaskClickHandler}>{newTaskButton}</button>
+            {/* PROJECT TASK FILTERS */}
+            {!createNewTask && project.all_tasks.length > 0 && (
               <div className={styles.tags}>
                 <p>filter:</p>
                 <p
@@ -52,9 +73,11 @@ export default function CurrentProject({ projectId }) {
               </div>
             )}
           </div>
-          {project.all_tasks.length < 1 && <p>No tasks for current project</p>}
           {/*  Project Tasks */}
-          {
+          {!createNewTask && project.all_tasks.length < 1 && (
+            <p>No tasks for current project</p>
+          )}
+          {!createNewTask && (
             <div className={styles["project-tasks"]}>
               {project.all_tasks.map((task) => {
                 // Check if task was filtered out
@@ -63,8 +86,12 @@ export default function CurrentProject({ projectId }) {
                 return <ProjectTask key={task.id} task={task} />;
               })}
             </div>
-          }
+          )}
         </>
+      )}
+
+      {createNewTask && (
+        <NewTask projectId={project.id} filterTags={project.filter_tags} />
       )}
 
       {isPending && <p>Loading...</p>}
