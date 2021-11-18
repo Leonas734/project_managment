@@ -96,10 +96,7 @@ export default function Home() {
 
       {/* NEW PROJECT VIEW */}
       {!currentProject && !params.task_id && (
-        <NewProject
-          styleClassName={styles["new-project"]}
-          refreshProjectsList={getProjects}
-        />
+        <NewProject refreshProjectsList={getProjects} />
       )}
 
       {/* CURRENT PROJECT VIEW */}

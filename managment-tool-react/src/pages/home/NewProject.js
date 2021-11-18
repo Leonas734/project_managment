@@ -3,7 +3,7 @@ import styles from "./NewProject.module.css";
 import { useCreateProject } from "../../hooks/useCreateProject";
 import { useNavigate } from "react-router-dom";
 
-export default function NewProject({ styleClassName, refreshProjectsList }) {
+export default function NewProject({ refreshProjectsList }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const { createProject, error, response } = useCreateProject();
@@ -22,7 +22,7 @@ export default function NewProject({ styleClassName, refreshProjectsList }) {
   };
 
   return (
-    <div className={styleClassName}>
+    <div className={styles["new-project-container"]}>
       <h1>New Project</h1>
       <form className={styles["new-project-form"]} onSubmit={newProjectHandler}>
         <label>

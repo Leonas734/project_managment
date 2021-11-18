@@ -59,6 +59,7 @@ export default function Task({ projectId, taskId, setActiveProject }) {
           {/* COMMENTS SECTION */}
           <div className={styles.comments}>
             <h3>Project Comments</h3>
+            {task.all_comments.length === 0 && <p>No Comments</p>}
             {task.all_comments.map((comment) => {
               return (
                 <div

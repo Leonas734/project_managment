@@ -1,6 +1,11 @@
+.new-project-container {
+  background-color: #f1f3f5;
+  grid-row: 1/-1;
+  grid-column: 2/-1;
+}
+
 .new-project-form {
-  max-width: 360px;
-  margin: 60px auto;
+  background-color: #f1f3f5;
   padding: 0px 20px 0px 20px;
   font-size: 1.3rem;
 }

@@ -1,7 +1,7 @@
 .task {
   border: solid 1px rgb(187, 187, 187);
   border-radius: 5%;
-  background-color: khaki;
+  background-color: #74c0fc;
   margin-top: 1rem;
   cursor: pointer;
 }

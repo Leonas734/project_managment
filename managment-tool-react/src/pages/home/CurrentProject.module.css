@@ -11,6 +11,12 @@
   font-size: 1.2rem;
 }
 
+.tags {
+  background-color: white;
+  margin: 0 1rem;
+  border-radius: 10px;
+}
+
 .tags p {
   margin: 1rem;
   display: inline;
@@ -28,7 +34,7 @@
 
 .project-tasks {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(3, 1fr);
   grid-gap: 1rem;
   margin: 0 1rem;
