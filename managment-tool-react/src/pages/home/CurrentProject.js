@@ -16,11 +16,14 @@ export default function CurrentProject({ projectId }) {
       getProject(projectId);
     }
     return () => {
-      setCreateNewTask(false);
-      setNewTaskButton("New Task");
+      resetTaskButton();
     };
   }, [projectId, getProject]);
 
+  const resetTaskButton = () => {
+    setCreateNewTask(false);
+    setNewTaskButton("New Task");
+  };
   const newTaskClickHandler = () => {
     setCreateNewTask((prevState) => {
       if (prevState) {
@@ -91,7 +94,12 @@ export default function CurrentProject({ projectId }) {
       )}
 
       {createNewTask && (
-        <NewTask projectId={project.id} filterTags={project.filter_tags} />
+        <NewTask
+          projectId={project.id}
+          filterTags={project.filter_tags}
+          reloadProject={getProject}
+          closeTaskPage={resetTaskButton}
+        />
       )}
 
       {isPending && <p>Loading...</p>}

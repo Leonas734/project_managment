@@ -33,7 +33,9 @@ export const usePasswordUpdate = () => {
       });
       const data = await res.json();
       if (!res.ok) {
-        const errorMessage = Object.values(data)[0];
+        const errorMessage = `${Object.keys(data)[0].toUpperCase()}-${
+          Object.values(data)[0]
+        }`;
         throw new Error(errorMessage);
       }
       setNewPasswordSet(true);
