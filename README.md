@@ -1,3 +1,7 @@
 # Project managment tool
+### Technologies used: 
+- Django REST Framework
+- React
 
-### Will fill this in later
+### Live version
+http://ladomaitis.com/project_managment/
